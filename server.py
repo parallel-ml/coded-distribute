@@ -25,7 +25,7 @@ class Responder(ipc.Responder):
     def invoke(self, msg, req):
         global model, graph
         try:
-            timestamp, bytestr = req['timestamp'], req['input']
+            timestamp, bytestr = float(req['timestamp']), req['input']
             with graph.as_default():
                 data = np.fromstring(bytestr, np.float32).reshape([2000])
                 model.predict(np.array([data]))

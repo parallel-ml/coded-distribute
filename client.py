@@ -11,7 +11,8 @@ DIR_PATH = os.path.dirname(PATH)
 
 # data packet format definition
 PROTOCOL = protocol.parse(open(DIR_PATH + '/resource/message/message.avpr').read())
-DEVICES = ['192.168.1.14', '192.168.1.15', '192.168.1.16']
+# DEVICES = ['192.168.1.14', '192.168.1.15', '192.168.1.16']
+DEVICES = ['127.0.0.1']
 
 
 def send_request(frame, ip):
@@ -21,7 +22,7 @@ def send_request(frame, ip):
 
     data = dict()
     data['input'] = frame.astype(np.float32).tobytes()
-    data['time'] = time.time()
+    data['timestamp'] = time.time()
 
     timestamp = requestor.request('forward', data)
     client.close()
