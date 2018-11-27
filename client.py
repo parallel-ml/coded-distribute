@@ -10,7 +10,7 @@ DIR_PATH = os.path.dirname(PATH)
 
 # data packet format definition
 PROTOCOL = protocol.parse(open(DIR_PATH + '/resource/message/message.avpr').read())
-DEVICES = ['192.168.1.14', '192.168.1.15', '192.168.1.16']
+DEVICES = ['192.168.1.5', '192.168.1.23', '192.168.1.10']
 
 
 def send_request(frame, ip):
