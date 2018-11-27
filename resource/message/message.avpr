@@ -7,11 +7,8 @@
       "request" : [ {
         "name" : "input",
         "type" : "bytes"
-      }, {
-        "name" : "timestamp",
-        "type" : "float"
       } ],
-      "response" : "float"
+      "response" : "null"
     }
   }
 }
