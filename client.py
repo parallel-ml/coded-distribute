@@ -1,5 +1,4 @@
 import time
-from threading import Thread
 import os
 
 import avro.ipc as ipc
@@ -21,13 +20,14 @@ def send_request(frame, ip):
 
     data = dict()
     data['input'] = frame.astype(np.float32).tobytes()
-    data['timestamp'] = time.time()
 
-    timestamp = requestor.request('forward', data)
+    start = time.time()
+
+    requestor.request('forward', data)
     client.close()
 
     count += 1
-    total += (time.time() - timestamp)
+    total += (time.time() - start)
 
 
 def master():
@@ -36,8 +36,7 @@ def master():
     data = np.random.random_sample([2000])
     for i in range(100):
         for device in DEVICES:
-            Thread(target=send_request, args=(data, device,)).start()
-            time.sleep(0.1)
+            send_request(data, device)
 
     while count < len(DEVICES) * 100:
         time.sleep(0.1)

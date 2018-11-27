@@ -25,11 +25,11 @@ class Responder(ipc.Responder):
     def invoke(self, msg, req):
         global model, graph
         try:
-            timestamp, bytestr = float(req['timestamp']), req['input']
+            bytestr = req['input']
             with graph.as_default():
                 data = np.fromstring(bytestr, np.float32).reshape([2000])
                 model.predict(np.array([data]))
-            return timestamp
+            return
         except Exception, e:
             print 'Message exception'
 
