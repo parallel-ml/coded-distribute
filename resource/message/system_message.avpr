@@ -1,0 +1,17 @@
+{
+  "protocol" : "system_message",
+  "namespace" : null,
+  "types" : [ ],
+  "messages" : {
+    "forward" : {
+      "request" : [ {
+        "name" : "input",
+        "type" : "bytes"
+      }, {
+        "name" : "timestamp",
+        "type" : "string"
+      } ],
+      "response" : "null"
+    }
+  }
+}
