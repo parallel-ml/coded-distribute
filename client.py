@@ -1,5 +1,6 @@
 import time
 import os
+from sys import argv
 from threading import Thread
 
 import avro.ipc as ipc
@@ -11,7 +12,7 @@ DIR_PATH = os.path.dirname(PATH)
 
 # data packet format definition
 PROTOCOL = protocol.parse(open(DIR_PATH + '/resource/message/message.avpr').read())
-DEVICES = ['192.168.1.5', '192.168.1.23', '192.168.1.10']
+DEVICES = []
 
 
 def send_request(frame, ip):
@@ -40,9 +41,11 @@ def master():
         time.sleep(0.1)
 
 
-def main():
-    master()
-
-
 if __name__ == '__main__':
-    main()
+    if len(argv) < 2:
+        print 'python client.py [config file]'
+    else:
+        with open(argv[1]) as f:
+            for line in f.read().splitlines():
+                DEVICES.append(line)
+        master()
